@@ -1,7 +1,9 @@
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 public class DatabaseControl {
@@ -9,19 +11,38 @@ public class DatabaseControl {
         String host="localhost";
         String port="3306";
         String database="Query1";   // Name of Database
+
         String cp="utf8";  // Database codepage supporting Danish:
 
         String username="root";
-        String password="mypassword";
+        String password="Bacon123";
 
         String url = "jdbc:mysql://"+host+":"+port+"/"+database+"?characterEncoding="+cp;
+        FootagesAndReportersLoader loader = new FootagesAndReportersLoader();
+
+
+
         try{
+
             // Get connection
             Connection connection= DriverManager.getConnection(url,username,password);
-            Scanner scan = new Scanner(System.in,"CP850");
-            String input = scan.nextLine();
-            scan.close();
-            PreparedStatement statement=  connection.prepareStatement("insert Edition values ()");
+            try {
+
+                List<FootageAndReporter> footagesAndReporters = loader.loadFootagesAndReporters();
+                //System.out.println("loading from "+args[0]);
+                for(FootageAndReporter footageAndReporter : footagesAndReporters) {
+
+                    System.out.print(footageAndReporter.getFootage().getTitle());
+
+                    //System.out.println("\tReporter: " + footageAndReporter.getReporter());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            PreparedStatement statement=  connection.prepareStatement("create table KagePis(LastName VARCHAR(30));");
+
+
             System.out.println(statement);
             statement.execute();
 
