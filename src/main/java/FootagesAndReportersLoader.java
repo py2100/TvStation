@@ -25,9 +25,9 @@ public class FootagesAndReportersLoader {
     private final String delimiter = SEMICOLON_DELIMITER;
     SimpleDateFormat dateParser = new SimpleDateFormat("yyyyMMdd");
 
-    public List<FootageAndReporter> loadFootagesAndReporters(String filename) throws FileNotFoundException, IOException {
+    public List<FootageAndReporter> loadFootagesAndReporters() throws FileNotFoundException, IOException {
         List<FootageAndReporter> farList = new ArrayList<FootageAndReporter>();
-
+        String filename = "src/main/java/uploads.csv";
         BufferedReader in = null;
         try {
             in = new BufferedReader(new FileReader(filename));

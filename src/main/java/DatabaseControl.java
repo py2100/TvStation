@@ -8,7 +8,7 @@ public class DatabaseControl {
     public static void main(String[] args) {
         String host="localhost";
         String port="3306";
-        String database="Tv";   // Name of Database
+        String database="Query1";   // Name of Database
         String cp="utf8";  // Database codepage supporting Danish:
 
         String username="root";
@@ -21,7 +21,7 @@ public class DatabaseControl {
             Scanner scan = new Scanner(System.in,"CP850");
             String input = scan.nextLine();
             scan.close();
-            PreparedStatement statement=  connection.prepareStatement("insert into Edition values ()");
+            PreparedStatement statement=  connection.prepareStatement("insert Edition values ()");
             System.out.println(statement);
             statement.execute();
 
