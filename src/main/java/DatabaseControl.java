@@ -31,20 +31,18 @@ public class DatabaseControl {
                 List<FootageAndReporter> footagesAndReporters = loader.loadFootagesAndReporters();
                 //System.out.println("loading from "+args[0]);
                 for(FootageAndReporter footageAndReporter : footagesAndReporters) {
+                    String coma = ",";
+                    String statem = "Insert Reporter Values("+Integer.toString(footageAndReporter.getReporter().getCPR())+coma+ footageAndReporter.getReporter().getFirstName()+coma+
 
-                    System.out.print(footageAndReporter.getFootage().getTitle());
-
-                    //System.out.println("\tReporter: " + footageAndReporter.getReporter());
+                    PreparedStatement statement=  connection.prepareStatement(Statem);
+                    System.out.println(statement);
+                    statement.execute();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            PreparedStatement statement=  connection.prepareStatement("create table KagePis(LastName VARCHAR(30));");
 
-
-            System.out.println(statement);
-            statement.execute();
 
            // statement=  connection.prepareStatement("insert into Edition values ()");
           //  System.out.println(statement);
